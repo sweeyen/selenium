@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function loadData() {
+        document.getElementById("load-button").disabled = true;
+        setTimeout(() => {
+          document.getElementById("content").innerHTML = "The Maltese is a breed of dog in the toy group.";
+          document.getElementById("load-button").disabled = false;
+        }, 500);
+      }
+    </script>
+  </head>
+  <body>
+    <p id="content" >
+      The Maltese....
+    </p>
+    <button id="load-button" onclick="loadData()">
+      Click here to load additional data.
+    </button>
+  </body>
+</html>
