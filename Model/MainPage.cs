@@ -1,7 +1,6 @@
 using OpenQA.Selenium;
-using SeleniumPetWikiTest.Base;
 
-namespace SeleniumPetWikiTest.Pages
+namespace SeleniumPetWikiTest.Model
 {
     public class MainPage : BasePage
     {
@@ -42,4 +41,4 @@ namespace SeleniumPetWikiTest.Pages
             wait.Until(d => d.FindElement(loadButtonLocator).Enabled);
         }
     }
-} 
+}

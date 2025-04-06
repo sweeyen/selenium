@@ -1,37 +1,10 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using SeleniumPetWikiTest.Pages;
-using System.IO;
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
-using WebDriverManager.Helpers;
 
 namespace SeleniumPetWikiTest.Tests
 {
     [TestFixture]
-    public class PetWikiTests
+    public class PetWikiTests : BaseTestFixture
     {
-        private IWebDriver driver;
-        private MainPage mainPage;
-
-        [SetUp]
-        public void Setup()
-        {
-            var options = new ChromeOptions();
-            options.AddArguments("--no-sandbox");
-            options.AddArguments("--disable-dev-shm-usage");
-            
-            // Configure WebDriverManager to use Chrome version 134
-            var driverManager = new DriverManager();
-            driverManager.SetUpDriver(new ChromeConfig(), "134.0.6998.177");
-            
-            driver = new ChromeDriver(options);
-            mainPage = new MainPage(driver);
-            string htmlPath = Path.GetFullPath("PetPage.html");
-            driver.Navigate().GoToUrl($"file:///{htmlPath.Replace("\\", "/")}");
-        }
-
         [Test]
         public void TestGetLoadedData()
         {
@@ -66,12 +39,6 @@ namespace SeleniumPetWikiTest.Tests
 
             // Verify button is enabled again after loading
             Assert.That(mainPage.IsLoadButtonEnabled(), Is.True);
-        }
-
-        [TearDown]
-        public void Cleanup()
-        {
-            driver?.Quit();
         }
     }
 } 

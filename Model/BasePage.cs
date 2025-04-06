@@ -1,7 +1,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace SeleniumPetWikiTest.Base
+namespace SeleniumPetWikiTest.Model
 {
     public class BasePage
     {
@@ -11,7 +11,7 @@ namespace SeleniumPetWikiTest.Base
         public BasePage(IWebDriver driver)
         {
             this.driver = driver;
-            this.wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
         protected IWebElement WaitForElement(By locator)
@@ -32,4 +32,4 @@ namespace SeleniumPetWikiTest.Base
             }
         }
     }
-} 
+}
