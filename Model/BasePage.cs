@@ -11,7 +11,7 @@ namespace SeleniumPetWikiTest.Model
         public BasePage(IWebDriver driver)
         {
             this.driver = driver;
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
         }
 
         protected IWebElement WaitForElement(By locator)

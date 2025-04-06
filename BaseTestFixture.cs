@@ -25,6 +25,11 @@ namespace SeleniumPetWikiTest.Tests
             string chromeDriverPath = driverManager.SetUpDriver(new ChromeConfig());
 
             driver = new ChromeDriver(chromeDriverPath, options);
+
+            // Set implicit wait
+            // Not recommended as it will wait for all components and it will be combined total waiting time with explicitWait
+            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
+
             mainPage = new MainPage(driver);
             string htmlPath = Path.GetFullPath("PetPage.html");
             driver.Navigate().GoToUrl($"file:///{htmlPath.Replace("\\", "/")}");
