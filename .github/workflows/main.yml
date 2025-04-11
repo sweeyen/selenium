@@ -31,13 +31,13 @@ jobs:
       run: mkdir -p test_results
 
     - name: Run tests
-      run: dotnet test --no-build --logger "trx;LogFileName=test_results/test_results.trx"
+      run: dotnet test --no-build --logger "trx;LogFileName=test_results.trx"
 
     - name: Install ReportGenerator
       run: dotnet tool install --global dotnet-reportgenerator-globaltool
 
     - name: Generate HTML report
-      run: reportgenerator "-reports:test_results/test_results.trx" "-targetdir:test_results_html"
+      run: reportgenerator "-reports:TestResults/test_results.trx" "-targetdir:test_results_html"
 
     - name: Upload test results
       uses: actions/upload-artifact@v4
