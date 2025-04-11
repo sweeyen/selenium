@@ -33,29 +33,17 @@ jobs:
     - name: Run tests
       run: dotnet test --no-build --logger "trx;LogFileName=test_results.trx"
 
-    - name: Install ReportGenerator
-      run: dotnet tool install --global dotnet-reportgenerator-globaltool
-
-    - name: Generate HTML report
-      run: reportgenerator "-reports:TestResults/test_results.trx" "-targetdir:test_results_html"
-
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
         name: test-results
-        path: test_results_html
+        path: TestResults
 
-    - name: Generate HTML report 
+    - name: Generate report 
       uses: dorny/test-reporter@v2
       if: always()
       with:
         name: Test Results
         path: TestResults/test_results.trx
         reporter: dotnet-trx
-        output: html
-        outputDir: test_report_html
 
-    - name: Display HTML report
-      run: |
-        echo "HTML report generated at: test_report_html/index.html"
-        ls -R test_results_html/index.html
