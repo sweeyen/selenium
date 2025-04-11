@@ -6,7 +6,7 @@ namespace SeleniumPetWikiTest.Tests
     public class PetWikiTests : BaseTestFixture
     {
         [Test]
-        public void TestGetLoadedData()
+        public void TestGetLoadedData_ContentIsDisplayed()
         {
             // Click the load button
             mainPage.ClickLoadButton();
@@ -19,11 +19,11 @@ namespace SeleniumPetWikiTest.Tests
 
             // Verify the content is not empty and contains expected text
             Assert.That(loadedContent, Is.Not.Null.Or.Empty);
-            Assert.That(loadedContent, Does.Contain("Maltese"));
+            Assert.AreEqual(loadedContent, "The Maltese is a breed of dog in the toy group.");
         }
 
         [Test]
-        public void TestLoadButtonState()
+        public void TestLoadButtonState_ButtonisEnabledAfterLoading()
         {
             // Verify button is initially enabled
             Assert.That(mainPage.IsLoadButtonEnabled(), Is.True);

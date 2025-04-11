@@ -6,7 +6,7 @@ namespace SeleniumPetWikiTest.Tests
     public class MainPageTests : BaseTestFixture
     {
         [Test]
-        public void TestLoadButtonFunctionality()
+        public void TestLoadButtonFunctionality_InitialContentIsDisplayed()
         {
             // Get initial content
             string initialContent = mainPage.GetContent();
@@ -23,6 +23,7 @@ namespace SeleniumPetWikiTest.Tests
             // Verify content has changed
             string newContent = mainPage.GetContent();
             Assert.That(newContent, Is.Not.EqualTo(initialContent));
+            Assert.AreEqual(newContent, "The Maltese is a breed of dog in the toy group.");
         }
     }
 } 
