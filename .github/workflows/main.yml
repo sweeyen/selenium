@@ -58,4 +58,4 @@ jobs:
     - name: Display HTML report
       run: |
         echo "HTML report generated at: test_report_html/index.html"
-        ls -R test_report_html
+        ls -R test_results_html/index.html
