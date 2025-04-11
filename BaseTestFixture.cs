@@ -18,12 +18,8 @@ namespace SeleniumPetWikiTest.Tests
         {
             var options = new ChromeOptions();
             options.AddArguments("--no-sandbox");
+            options.AddArguments("--headless");
             options.AddArguments("--disable-dev-shm-usage");
-
-            // Create a unique temporary directory for the user-data-dir
-            string tempUserDataDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            Directory.CreateDirectory(tempUserDataDir);
-            options.AddArguments($"--user-data-dir={tempUserDataDir}");
 
             // Configure WebDriverManager
             var driverManager = new DriverManager();
