@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using SeleniumPetWikiTest.Model;
@@ -39,7 +40,29 @@ namespace SeleniumPetWikiTest.Tests
         [TearDown]
         public virtual void Cleanup()
         {
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            {
+                CaptureScreenshot();
+            }
             driver?.Quit();
+        }
+
+        private void CaptureScreenshot()
+        {
+            try
+            {
+                var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+                string screenshotDirectory = Path.Combine(TestContext.CurrentContext.WorkDirectory, "Screenshots");
+                Directory.CreateDirectory(screenshotDirectory);
+                string testName = TestContext.CurrentContext.Test.Name.Replace(' ', '_');
+                string screenshotFilePath = Path.Combine(screenshotDirectory, $"{testName}.jpg");
+                screenshot.SaveAsFile(screenshotFilePath);
+                TestContext.AddTestAttachment(screenshotFilePath, "Screenshot on Failure");
+            }
+            catch (Exception ex)
+            {
+                TestContext.WriteLine($"Failed to capture screenshot: {ex.Message}");
+            }
         }
     }
 } 
