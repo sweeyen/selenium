@@ -19,7 +19,7 @@ namespace SeleniumPetWikiTest.Tests
 
             // Verify the content is not empty and contains expected text
             Assert.That(loadedContent, Is.Not.Null.Or.Empty);
-            Assert.AreEqual(loadedContent, "The Maltese is a breed of dog in the toy group.1");
+            Assert.AreEqual(loadedContent, "The Maltese is a breed of dog in the toy group.");
         }
 
         [Test]
